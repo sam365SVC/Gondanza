@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus, HttpCode } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { loginDto } from './dto/loginDto';
 
@@ -10,6 +10,7 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   loginIn(@Body() LoginDto:loginDto)
   {
-    return this.loginIn(LoginDto)
+    const token=this.authService.signIn(LoginDto);
+    return token;
   }
 }
